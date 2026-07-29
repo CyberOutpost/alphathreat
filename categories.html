@@ -1,0 +1,30 @@
+---
+layout: page
+permalink: /categories/
+title: Categories
+eyebrow: Browse by topic
+description: Every Alpha Threat article grouped by the category it was filed under.
+---
+
+<div class="filters mb-2">
+  {%- for c in site.categories %}
+  <a class="filter" href="#{{ c[0] | slugify }}">{{ c[0] }} <span class="mono">{{ c[1] | size }}</span></a>
+  {%- endfor %}
+</div>
+
+{%- for c in site.categories %}
+<section class="cat-block" id="{{ c[0] | slugify }}">
+  <h2 class="cat-block__head">{{ c[0] }} <small class="muted">{{ c[1] | size }} post{% if c[1].size != 1 %}s{% endif %}</small></h2>
+  <div class="post-grid post-grid--compact">
+    {%- for post in c[1] %}
+    <article class="card card--link post-card">
+      <a href="{{ post.url | relative_url }}" class="post-card__hit">
+        <span class="post-card__date mono">{{ post.date | date: "%d %b %Y" }}</span>
+        <h3>{{ post.title | escape }}</h3>
+        <p>{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | truncate: 140 }}</p>
+      </a>
+    </article>
+    {%- endfor %}
+  </div>
+</section>
+{%- endfor %}

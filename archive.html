@@ -1,0 +1,25 @@
+---
+layout: page
+permalink: /archive/
+title: Archive
+eyebrow: Every post, by year
+description: The complete Alpha Threat Blog archive, newest first.
+---
+
+{%- assign posts_by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+{%- for year in posts_by_year %}
+<div class="arch-year">
+  <h2 class="arch-year__head"><span class="mono">{{ year.name }}</span> <small class="muted">{{ year.items | size }} post{% if year.items.size != 1 %}s{% endif %}</small></h2>
+  <ul class="arch-list">
+    {%- for post in year.items %}
+    <li>
+      <a href="{{ post.url | relative_url }}">
+        <time class="mono" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %b" }}</time>
+        <span class="arch-list__title">{{ post.title | escape }}</span>
+        <span class="arch-list__cat mono">{{ post.categories | first }}</span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>
+{%- endfor %}

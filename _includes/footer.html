@@ -1,0 +1,50 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid footer__grid--blog">
+      <div class="footer__brand">
+        <img src="{{ '/assets/img/logo_at.png' | relative_url }}" alt="Alpha Threat">
+        <p>Cyber security consulting from an attacker's perspective — penetration testing, adversary simulation, threat intelligence and compliance.</p>
+        <div class="socials mt-2">
+          <a href="https://www.facebook.com/AlphaThreat.IT" target="_blank" rel="noopener" aria-label="Alpha Threat on Facebook"><svg><use href="#i-fb"></use></svg></a>
+          <a href="https://www.instagram.com/alpha_threat_/" target="_blank" rel="noopener" aria-label="Alpha Threat on Instagram"><svg><use href="#i-ig"></use></svg></a>
+          <a href="https://www.linkedin.com/company/alpha-threat" target="_blank" rel="noopener" aria-label="Alpha Threat on LinkedIn"><svg><use href="#i-li"></use></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Categories</h4>
+        <ul>
+          {%- for c in site.categories %}
+          <li><a href="{{ '/categories/' | relative_url }}#{{ c[0] | slugify }}">{{ c[0] }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+
+      <div>
+        <h4>This blog</h4>
+        <ul>
+          <li><a href="{{ '/' | relative_url }}">Latest posts</a></li>
+          <li><a href="{{ '/archive/' | relative_url }}">Full archive</a></li>
+          <li><a href="{{ '/categories/' | relative_url }}">All categories</a></li>
+          <li><a href="{{ '/feed.xml' | relative_url }}">Atom feed</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Alpha Threat</h4>
+        <ul>
+          <li><a href="{{ site.main_site }}/" target="_blank" rel="noopener">Home</a></li>
+          <li><a href="{{ site.main_site }}/Services/training.html" target="_blank" rel="noopener">Alpha Academy</a></li>
+          <li><a href="{{ site.main_site }}/gallery.html" target="_blank" rel="noopener">Infographics</a></li>
+          <li><a href="{{ site.main_site }}/#contact" target="_blank" rel="noopener">Contact</a></li>
+          <li><a href="{{ site.main_site }}/privacy-policy.html" target="_blank" rel="noopener">Privacy policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year>{{ site.time | date: '%Y' }}</span> Alpha Threat IT Solutions. All rights reserved.</span>
+      <span class="mono" style="font-size:.78rem">Bengaluru, India · {{ site.email }} · +91 93685 75559</span>
+    </div>
+  </div>
+</footer>

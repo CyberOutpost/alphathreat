@@ -1,0 +1,66 @@
+---
+layout: default
+title: null
+body_class: blog blog-home
+---
+
+<section class="page-hero page-hero--index">
+  <div class="container">
+    <p class="eyebrow">Alpha Threat Blog</p>
+    <h1>Offensive security notes,<br>written from the attacker's seat.</h1>
+    <p class="page-hero__lede">
+      Malware tradecraft, pentest technique, tooling in Ruby and Python, and plain-English
+      security awareness — {{ site.posts | size }} articles from the Alpha Threat team.
+    </p>
+    <div class="meta-strip">
+      <a class="chip chip--link" href="{{ '/archive/' | relative_url }}">Full archive</a>
+      <a class="chip chip--link" href="{{ '/categories/' | relative_url }}">Browse by category</a>
+      <a class="chip chip--link" href="{{ '/feed.xml' | relative_url }}">Atom feed</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <p class="eyebrow eyebrow--cyan">Latest</p>
+        <h2>All articles</h2>
+      </div>
+      <div class="post-search">
+        <label class="sr-only" for="q">Filter articles</label>
+        <input type="search" id="q" placeholder="Filter by title, e.g. netcat" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="filters" id="cat-filters">
+      <button class="filter is-active" data-cat="all">All <span class="mono">{{ site.posts | size }}</span></button>
+      {%- for c in site.categories %}
+      <button class="filter" data-cat="{{ c[0] | slugify }}">{{ c[0] }} <span class="mono">{{ c[1] | size }}</span></button>
+      {%- endfor %}
+    </div>
+
+    <div class="post-grid" id="post-grid">
+      {%- for post in site.posts %}
+      <article class="card card--link post-card"
+               data-cats="{% for c in post.categories %}{{ c | slugify }} {% endfor %}"
+               data-title="{{ post.title | downcase | escape }}">
+        <a href="{{ post.url | relative_url }}" class="post-card__hit">
+          <span class="post-card__date mono">{{ post.date | date: "%d %b %Y" }}</span>
+          <h3>{{ post.title | escape }}</h3>
+          <p>{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | truncate: 165 }}</p>
+          <div class="card__meta">
+            {%- for c in post.categories %}
+            <span>{{ c }}</span>
+            {%- endfor %}
+          </div>
+        </a>
+      </article>
+      {%- endfor %}
+    </div>
+
+    <p class="post-empty muted" id="no-results" hidden>No articles match that filter.</p>
+
+  </div>
+</section>

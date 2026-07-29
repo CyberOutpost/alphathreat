@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+</head>
+
+<body class="{{ page.body_class | default: 'blog' }}">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="scroll-progress"></div>
+
+{% include icons.html %}
+{% include nav.html %}
+
+<main id="main">
+{{ content }}
+</main>
+
+{% include footer.html %}
+
+<button class="to-top" aria-label="Back to top"><svg width="18" height="18"><use href="#i-up"></use></svg></button>
+
+<script defer src="{{ '/assets/js/at.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/blog.js' | relative_url }}"></script>
+</body>
+</html>

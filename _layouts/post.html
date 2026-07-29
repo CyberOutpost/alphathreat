@@ -1,0 +1,107 @@
+---
+layout: default
+---
+<article class="post-page">
+
+  <div class="page-hero page-hero--post">
+    <div class="container">
+      <ul class="crumbs">
+        <li><a href="{{ '/' | relative_url }}">Blog</a></li>
+        {%- for c in page.categories %}
+        <li><a href="{{ '/categories/' | relative_url }}#{{ c | slugify }}">{{ c }}</a></li>
+        {%- endfor %}
+        <li aria-current="page">{{ page.title | escape | truncate: 42 }}</li>
+      </ul>
+
+      <p class="eyebrow">{% if page.categories.size > 0 %}{{ page.categories | join: ' · ' }}{% else %}Article{% endif %}</p>
+      <h1>{{ page.title | escape }}</h1>
+      {%- if page.description %}
+      <p class="page-hero__lede">{{ page.description }}</p>
+      {%- endif %}
+
+      <div class="meta-strip">
+        <span class="chip"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %B %Y" }}</time></span>
+        <span class="chip">{{ content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+        <span class="chip">by {{ page.author | default: site.author }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section--tight">
+    <div class="container">
+      <div class="svc-layout">
+
+        <div class="svc-side">
+          <div class="prose post-body">
+            {{ content }}
+          </div>
+
+          <div class="post-foot">
+            {%- if page.categories.size > 0 %}
+            <div class="post-foot__tags">
+              {%- for c in page.categories %}
+              <a class="chip chip--link" href="{{ '/categories/' | relative_url }}#{{ c | slugify }}">{{ c }}</a>
+              {%- endfor %}
+            </div>
+            {%- endif %}
+            {%- if page.original_url %}
+            <p class="post-foot__note muted">
+              Originally published at <code class="mono">{{ page.original_url }}</code>.
+              Restored from the Internet Archive.
+            </p>
+            {%- endif %}
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            {%- if page.previous %}
+            <a class="post-nav__item" href="{{ page.previous.url | relative_url }}">
+              <span class="post-nav__dir mono">← Previous</span>
+              <span class="post-nav__title">{{ page.previous.title | escape }}</span>
+            </a>
+            {%- endif %}
+            {%- if page.next %}
+            <a class="post-nav__item post-nav__item--next" href="{{ page.next.url | relative_url }}">
+              <span class="post-nav__dir mono">Next →</span>
+              <span class="post-nav__title">{{ page.next.title | escape }}</span>
+            </a>
+            {%- endif %}
+          </nav>
+        </div>
+
+        <aside>
+          <div class="sticky-card">
+            <div class="card">
+              <h4>On this page</h4>
+              <nav class="toc" id="toc" aria-label="Table of contents"></nav>
+            </div>
+
+            {%- assign related = site.posts | where_exp: "p", "p.url != page.url" -%}
+            {%- assign cat = page.categories | first -%}
+            {%- if cat %}
+            <div class="card">
+              <h4>More in {{ cat }}</h4>
+              <ul class="side-list">
+                {%- assign n = 0 -%}
+                {%- for p in related -%}
+                  {%- if p.categories contains cat and n < 5 -%}
+                  <li><a href="{{ p.url | relative_url }}">{{ p.title | escape }}</a></li>
+                  {%- assign n = n | plus: 1 -%}
+                  {%- endif -%}
+                {%- endfor %}
+              </ul>
+            </div>
+            {%- endif %}
+
+            <div class="card card--cyan">
+              <div class="card__icon"><svg><use href="#i-target"></use></svg></div>
+              <h4>Need this tested for real?</h4>
+              <p>Alpha Threat runs manual penetration tests and adversary simulation against your actual environment.</p>
+              <a class="btn btn--sm mt-2" href="{{ site.main_site }}/#contact" target="_blank" rel="noopener">Book an assessment</a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </div>
+</article>

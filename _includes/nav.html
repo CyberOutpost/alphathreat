@@ -1,0 +1,30 @@
+<header class="nav" id="top">
+  <div class="nav__inner">
+    <a class="nav__brand" href="{{ '/' | relative_url }}" aria-label="Alpha Threat Blog home">
+      <img src="{{ '/assets/img/logo.png' | relative_url }}" alt="Alpha Threat logo" width="120" height="34">
+      <span class="nav__brand-tag mono">/blog</span>
+    </a>
+
+    <button class="nav__burger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav__menu" id="nav-menu">
+      <li><a class="nav__link{% if page.url == '/' %} is-active{% endif %}" href="{{ '/' | relative_url }}">Latest</a></li>
+
+      <li class="nav__item">
+        <button class="nav__link" aria-expanded="false">Categories <i class="caret"></i></button>
+        <ul class="nav__panel">
+          {%- assign cats = site.categories | sort -%}
+          {%- for c in cats %}
+          <li><a class="nav__sub" href="{{ '/categories/' | relative_url }}#{{ c[0] | slugify }}">{{ c[0] }} <small>{{ c[1] | size }} post{% if c[1].size != 1 %}s{% endif %}</small></a></li>
+          {%- endfor %}
+        </ul>
+      </li>
+
+      <li><a class="nav__link{% if page.url contains '/archive' %} is-active{% endif %}" href="{{ '/archive/' | relative_url }}">Archive</a></li>
+      <li><a class="nav__link" href="{{ site.main_site }}" target="_blank" rel="noopener">Main site</a></li>
+      <li><a class="nav__cta" href="{{ site.main_site }}/#contact" target="_blank" rel="noopener">Book an assessment</a></li>
+    </ul>
+  </div>
+</header>

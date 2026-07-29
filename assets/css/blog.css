@@ -1,0 +1,235 @@
+/* ==========================================================================
+   Alpha Threat Blog — additions on top of the main site's design system.
+   at.css owns the tokens, nav, footer, cards, buttons and .prose base;
+   everything here is blog-specific (post cards, article body, archive, TOC).
+   ========================================================================== */
+
+/* ---------- 1. Nav ---------- */
+.nav__brand-tag{
+  font-size:.72rem;letter-spacing:.14em;color:var(--brand);
+  border:1px solid rgba(225,29,51,.35);border-radius:var(--radius-full);
+  padding:2px 8px;margin-left:10px;
+}
+.nav__panel small{display:block;color:var(--muted);font-size:.76rem;margin-top:2px}
+
+/* ---------- 2. Index hero ---------- */
+.page-hero--index h1{max-width:22ch}
+.chip{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-dim);
+  padding:7px 13px;border:1px solid var(--line);border-radius:var(--radius-full);
+  background:rgba(255,255,255,.03);
+}
+.chip--link{transition:border-color .25s,color .25s}
+.chip--link:hover{border-color:rgba(225,29,51,.45);color:var(--text)}
+
+/* ---------- 3. Filters + search ---------- */
+.section-head{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between;margin-bottom:26px}
+.section-head h2{margin-bottom:0}
+
+.post-search input{
+  width:min(320px,72vw);padding:11px 16px;border-radius:var(--radius-full);
+  border:1px solid var(--line);background:var(--surface);color:var(--text);
+  font-size:.92rem;transition:border-color .25s,box-shadow .25s;
+}
+.post-search input:focus{outline:none;border-color:rgba(34,211,238,.5);box-shadow:0 0 0 3px rgba(34,211,238,.12)}
+.post-search input::placeholder{color:var(--muted)}
+
+.filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:30px}
+.filter{
+  cursor:pointer;font-family:var(--font-body);font-size:.86rem;
+  padding:8px 15px;border-radius:var(--radius-full);
+  border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text-dim);
+  transition:all .25s var(--ease);
+}
+.filter span{color:var(--muted);font-size:.74rem;margin-left:5px}
+.filter:hover{border-color:var(--line-strong);color:var(--text)}
+.filter.is-active{
+  background:linear-gradient(135deg,rgba(225,29,51,.22),rgba(225,29,51,.06));
+  border-color:rgba(225,29,51,.5);color:#fff;
+}
+.filter.is-active span{color:rgba(255,255,255,.7)}
+
+/* ---------- 4. Post cards ---------- */
+.post-grid{
+  display:grid;gap:20px;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+}
+.post-grid--compact{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.post-card{padding:0}
+.post-card[hidden]{display:none}
+.post-card__hit{display:block;padding:24px 26px 22px;height:100%}
+.post-card__date{
+  display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;
+}
+.post-card h3{
+  font-size:1.1rem;line-height:1.3;margin-bottom:10px;
+  transition:color .25s;
+}
+.post-card:hover h3{color:var(--brand)}
+.post-card p{color:var(--text-dim);font-size:.9rem;line-height:1.6}
+.post-empty{padding:40px 0;text-align:center}
+
+/* ---------- 5. Article ---------- */
+.page-hero--post h1{font-size:clamp(1.85rem,3.6vw,2.9rem);max-width:24ch}
+
+.post-body{font-size:1.03rem;line-height:1.78;max-width:78ch}
+.post-body > :first-child{margin-top:0}
+.post-body h2,.post-body h3,.post-body h4{color:var(--text)}
+.post-body h3{
+  margin-top:2em;font-size:1.3rem;
+  padding-left:14px;border-left:3px solid var(--brand);
+}
+.post-body h4{margin-top:1.6em;font-size:1.06rem;color:var(--text-dim)}
+.post-body strong{color:var(--text)}
+.post-body a{color:var(--brand);text-decoration:underline;text-underline-offset:3px}
+.post-body a:hover{color:#ff5570}
+.post-body ul,.post-body ol{margin:0 0 1.2em;padding-left:1.3em}
+.post-body li{margin-bottom:.5em;color:var(--text-dim)}
+.post-body li::marker{color:var(--brand)}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.4em 0}
+
+.post-body img{
+  border-radius:var(--radius);border:1px solid var(--line);
+  margin:1.5em 0;box-shadow:var(--shadow-sm);background:var(--surface);
+}
+.post-body figure{margin:1.6em 0}
+.post-body figcaption{
+  font-size:.82rem;color:var(--muted);text-align:center;margin-top:9px;
+  font-family:var(--font-mono);
+}
+
+.post-body blockquote{
+  margin:1.6em 0;padding:16px 22px;
+  border-left:3px solid var(--cyan);border-radius:0 var(--radius) var(--radius) 0;
+  background:linear-gradient(90deg,rgba(34,211,238,.08),transparent);
+  color:var(--text-dim);
+}
+.post-body blockquote p:last-child{margin-bottom:0}
+
+/* code */
+.post-body code{
+  font-family:var(--font-mono);font-size:.87em;
+  background:var(--surface-2);border:1px solid var(--line);
+  padding:2px 6px;border-radius:6px;color:var(--cyan);
+}
+.post-body pre{
+  margin:1.5em 0;padding:18px 20px;overflow-x:auto;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow-sm);
+  font-family:var(--font-mono);font-size:.86rem;line-height:1.62;
+}
+.post-body pre code{
+  background:none;border:none;padding:0;color:var(--text-dim);font-size:inherit;
+}
+.post-body .highlight{margin:1.5em 0;border-radius:var(--radius)}
+.post-body .highlight pre{margin:0}
+
+/* tables */
+.post-body table{
+  width:100%;border-collapse:collapse;margin:1.6em 0;
+  font-size:.88rem;display:block;overflow-x:auto;
+}
+.post-body th,.post-body td{
+  padding:10px 14px;border:1px solid var(--line);text-align:left;vertical-align:top;
+}
+.post-body th{
+  background:var(--surface-2);color:var(--text);font-family:var(--font-display);
+  font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;
+}
+.post-body td{color:var(--text-dim)}
+.post-body tbody tr:nth-child(even) td{background:rgba(255,255,255,.018)}
+
+/* screenshots the Internet Archive never captured */
+.img-missing{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;
+  margin:1.5em 0;padding:16px 20px;
+  border:1px dashed rgba(245,181,68,.4);border-radius:var(--radius);
+  background:rgba(245,181,68,.05);
+  font-size:.88rem;color:var(--text-dim);
+}
+.img-missing strong{color:var(--amber)}
+.img-missing code{background:none;border:none;color:var(--muted);padding:0}
+
+/* ---------- 6. Article footer + prev/next ---------- */
+.post-foot{margin-top:44px;padding-top:24px;border-top:1px solid var(--line)}
+.post-foot__tags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px}
+.post-foot__note{font-size:.84rem}
+.post-foot__note code{font-size:.82rem;color:var(--muted)}
+
+.post-nav{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
+@media(max-width:640px){.post-nav{grid-template-columns:1fr}}
+.post-nav__item{
+  display:block;padding:20px 22px;border-radius:var(--radius);
+  border:1px solid var(--line);background:rgba(255,255,255,.025);
+  transition:border-color .25s,transform .25s var(--ease);
+}
+.post-nav__item:hover{border-color:rgba(225,29,51,.4);transform:translateY(-3px)}
+.post-nav__item--next{text-align:right;grid-column:2}
+@media(max-width:640px){.post-nav__item--next{text-align:left;grid-column:1}}
+.post-nav__dir{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);margin-bottom:7px}
+.post-nav__title{color:var(--text-dim);font-size:.93rem;line-height:1.45}
+.post-nav__item:hover .post-nav__title{color:var(--text)}
+
+/* ---------- 7. Sidebar ---------- */
+.side-list{list-style:none;display:grid;gap:10px}
+.side-list a{
+  display:block;font-size:.89rem;color:var(--text-dim);line-height:1.45;
+  padding-left:14px;position:relative;transition:color .25s;
+}
+.side-list a::before{
+  content:"";position:absolute;left:0;top:.6em;width:5px;height:5px;
+  border-radius:50%;background:var(--brand);opacity:.6;
+}
+.side-list a:hover{color:var(--text)}
+
+.toc{display:grid;gap:8px;max-height:min(52vh,440px);overflow-y:auto}
+.toc a{
+  font-size:.85rem;color:var(--text-dim);line-height:1.4;
+  padding-left:13px;border-left:2px solid var(--line);transition:all .22s;
+}
+.toc a:hover{color:var(--text);border-left-color:var(--brand)}
+.toc a.is-current{color:var(--brand);border-left-color:var(--brand)}
+.toc a[data-level="3"]{padding-left:24px;font-size:.81rem}
+.toc:empty::after{content:"No headings in this article.";color:var(--muted);font-size:.85rem}
+
+/* ---------- 8. Archive + categories ---------- */
+.arch-year{margin-bottom:46px}
+.arch-year__head{
+  display:flex;align-items:baseline;gap:12px;font-size:1.5rem;
+  padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line);
+}
+.arch-year__head span{color:var(--brand)}
+.arch-year__head small{font-size:.8rem;font-family:var(--font-body);font-weight:400}
+
+.arch-list{list-style:none;display:grid}
+.arch-list a{
+  display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:16px;align-items:baseline;
+  padding:13px 14px;border-radius:10px;transition:background .22s;
+}
+.arch-list a:hover{background:rgba(255,255,255,.035)}
+.arch-list time{font-size:.76rem;color:var(--muted);letter-spacing:.06em}
+.arch-list__title{color:var(--text-dim);line-height:1.45;transition:color .22s}
+.arch-list a:hover .arch-list__title{color:var(--brand)}
+.arch-list__cat{font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+@media(max-width:700px){
+  .arch-list a{grid-template-columns:64px minmax(0,1fr)}
+  .arch-list__cat{display:none}
+}
+
+.cat-block{margin-bottom:52px;scroll-margin-top:calc(var(--nav-h) + 24px)}
+.cat-block__head{
+  display:flex;align-items:baseline;gap:12px;font-size:1.45rem;
+  padding-bottom:12px;margin-bottom:18px;border-bottom:1px solid var(--line);
+}
+.cat-block__head small{font-size:.8rem;font-family:var(--font-body);font-weight:400}
+
+/* ---------- 9. Footer ---------- */
+.footer__grid--blog{grid-template-columns:1.6fr 1fr 1fr 1fr}
+@media(max-width:900px){.footer__grid--blog{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.footer__grid--blog{grid-template-columns:1fr}}
+
+/* ---------- 10. Never hide content behind scroll-reveal on this site ---------- */
+.post-card,.arch-list,.post-body{opacity:1 !important;transform:none !important}

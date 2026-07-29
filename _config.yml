@@ -1,0 +1,62 @@
+# ---------------------------------------------------------------------------
+# Alpha Threat Blog — Jekyll config
+#
+# GitHub Pages builds this natively; there is no CI step to maintain.
+#
+# TWO VALUES TO SET before the first push:
+#   url      -> https://<your-github-username>.github.io
+#   baseurl  -> "/<repo-name>"   (or "" if the repo is <username>.github.io,
+#                                 or "" once blog.alphathreat.in is pointed here)
+# ---------------------------------------------------------------------------
+
+title: Alpha Threat Blog
+tagline: Research, malware analysis & how-tos
+description: >-
+  Offensive-security research, malware analysis, pentest tradecraft and
+  security awareness from the Alpha Threat team.
+author: Alpha Threat
+email: info@alphathreat.in
+
+url: "https://REPLACE-ME.github.io"
+baseurl: "/alphathreat-blog"
+
+# Link back to the main site (used by the nav and footer).
+main_site: "https://alphathreat.in"
+
+# No gem theme — the layouts in _layouts/ are the real alphathreat.in markup.
+theme: null
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+permalink: /:year/:month/:day/:title/
+timezone: Asia/Kolkata
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+feed:
+  path: feed.xml
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: Alpha Threat
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - .jekyll-cache
