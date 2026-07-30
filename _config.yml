@@ -3,10 +3,9 @@
 #
 # GitHub Pages builds this natively; there is no CI step to maintain.
 #
-# TWO VALUES TO SET before the first push:
-#   url      -> https://<your-github-username>.github.io
-#   baseurl  -> "/<repo-name>"   (or "" if the repo is <username>.github.io,
-#                                 or "" once blog.alphathreat.in is pointed here)
+# Served from the custom domain blog.alphathreat.in (see the CNAME file), so
+# baseurl is empty. If you ever move to a plain project URL such as
+# cyberoutpost.github.io/alphathreat-blog, set baseurl to "/alphathreat-blog".
 # ---------------------------------------------------------------------------
 
 title: Alpha Threat Blog
@@ -17,8 +16,8 @@ description: >-
 author: Alpha Threat
 email: info@alphathreat.in
 
-url: "https://REPLACE-ME.github.io"
-baseurl: "/alphathreat-blog"
+url: "https://blog.alphathreat.in"
+baseurl: ""
 
 # Link back to the main site (used by the nav and footer).
 main_site: "https://alphathreat.in"
